@@ -1,0 +1,936 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+        <!-- title -->
+        <title>Redchillies Video Reviewer</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1" />
+        <meta name="author" content="Darshan">
+        <!-- description -->
+        <meta name="description" content="Redchillies ">
+        <!-- keywords -->
+        <meta name="keywords" content="creative, modern, clean, bootstrap responsive, html5, css3, portfolio, blog, agency, templates, multipurpose, one page, corporate, start-up, studio, branding, designer, freelancer, carousel, parallax, photography, personal, masonry, grid, coming soon, faq">      
+        <!-- animation -->
+        <link rel="stylesheet" href="css/animate.css" />
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />        
+        <!-- font-awesome icon -->
+        <link rel="stylesheet" href="css/font-awesome.min.css" />       
+        <!-- style -->
+        <link rel="stylesheet" href="css/style.css" />
+        <!-- responsive css -->
+        <link rel="stylesheet" href="css/responsive.css" />
+        <!-- Folder css -->
+        <link rel="stylesheet" href="css/ffolders.css" />
+        <!--[if IE]>
+            <script src="/js/html5shiv.js"></script>
+        <![endif]-->
+        <style>            
+            .video-preview {
+                display: inline-block;
+                position: relative;
+                /* background: #ddd; */
+                overflow: hidden;
+                /* This is temporary width and height, these'll be overriden when the source img is loaded. */
+                /* If you already know size of a preview frame you can hardcode it here. */
+                width: 160px;                
+                height: 120px;
+                border-radius: 3px;
+                /* box-shadow: 0 0 6px #bbb; */
+            }
+            #list_view {
+               display: none;
+            }
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 60px;
+                height: 34px;
+                margin-top: 5px; 
+            }
+
+            .switch input { 
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            .slider {
+                position: absolute;
+                cursor: pointer;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: #ccc;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+            input:checked + .slider {
+                background-color: #2196F3;
+            }
+
+            input:focus + .slider {
+                box-shadow: 0 0 1px #2196F3;
+            }
+
+            input:checked + .slider:before {
+                -webkit-transform: translateX(26px);
+                -ms-transform: translateX(26px);
+                transform: translateX(26px);
+            }
+
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 34px;
+            }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+            .bYDJpI{
+                overflow: hidden;
+                background-color: rgb(32, 34, 43);
+                border-radius: 6px;
+                font-size: 13px;
+                border: none;
+                color: rgb(241, 243, 246);
+                width: 100%;
+                height: 32px;
+                padding: 8px;
+                transition: background-color 200ms linear 0s;
+            }
+            
+        </style>
+    </head>
+    <body style="background-color: #15151C; color:#fff;">        
+        <!-- start navigation -->        
+        <nav class="navbar no-margin-bottom bootsnav alt-font bg-white sidebar-nav sidebar-nav-style-1">
+            <!-- start logo -->
+            <div class="col-md-12 sidenav-header">                
+                <p style="color: #fff; font-size:20px;" id="account">Darshan's Account <i id="account_info_hide" onclick="showhide_account()" class="fa fa-angle-down fax5" style="margin-top: 10px;"></i></p>                
+            </div>
+            <div id="account_info" style="position: absolute; z-index:1500; margin-top:46px; margin-left:10px; display:none;">
+                <div class="container" style="background-color: #fff; color:#6F7076; border-radius:15px;">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <p style="margin-top:10px;">D</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p style="margin: 0px;"> Darshan Panchal </p>
+                                <p style="margin: 0px; font-size:8px;">DarshanPanchal814@gmail.com </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-info" style="width: 100%; border-radius:10px; padding: 0px;">Subscribe now</button>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#">
+                                <div class="col-md-2">
+                                    <i class="fa fa-users fax5" style="margin-top: 10px;"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    <p style="margin: 0px;">Add members </p>
+                                    <p style="margin: 0px; font-size:8px;">Add / manage users & teams</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#">
+                                <div class="col-md-2">
+                                    <i class="fa fa-cog fax5" style="margin-top: 10px;"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    <p style="margin: 0px;">Account settings</p>
+                                    <p style="margin: 0px; font-size:8px;">Add / manage users & teams</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                           <a href="#">
+                            <div class="col-md-2">
+                                <i class="fa fa-user fax5" style="margin-top: 10px;"></i>
+                            </div>
+                            <div class="col-md-10">
+                                <p style="margin: 0px;">Personal settings</p>
+                                <p style="margin: 0px; font-size:8px;">Add / manage users & teams</p>
+                            </div>
+                           </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#">
+                                <div class="col-md-2">
+                                    <i class="fa fa-cog fax5" style="margin-top: 10px;"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    <p style="margin: 0px;">Apps & integrations </p>
+                                    <p style="margin: 0px; font-size:8px;">Add / manage users & teams</p>
+                                </div>
+                            </a>
+                        </div>                        
+                    </div>
+                    <hr/>
+                    <div class="row" style="margin-bottom:10px; ">
+                        <div class="col-md-12">
+                            <a style="margin: 0px;">Product updates </a><br>
+                            <a style="margin: 0px;">Status updates</a><br>
+                            <a style="margin: 0px;">Support FAQ </a><br>
+                            <a style="margin: 0px;">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#">
+                <div class="col-md-12 sidenav-header" style="margin-bottom: 10px;">                
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                </div>
+            </a>
+            <div class="row" style="margin:0px;">
+                <!-- <span class="context-menu-one btn btn-neutral">left click me</span>    -->
+                <div class="col-md-10" style=" margin-top:10px;">
+                    <a><i class="fa fa-angle-down fax5" style="margin-top: 10px;" id="project_list_show" onclick="showhide();"></i> Darshan's Team</a>
+                </div>
+                <div class="col-md-2">
+                    <a><i class="fa fa-plus" style="margin-top:18px ;" data-toggle="modal" data-target="#exampleModal" aria-hidden="true"></i> </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #5B53FF; padding: 0px;">
+                                    <div class="col-md-10">
+                                        <h6 class="modal-title" style="margin: 10px;" id="exampleModalLabel">Add Project</h6>                                    
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" style="margin: 15px;" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-body" style="color: #000;">
+                                    <input type="text" placeholder="Enter Project Name"/>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">
+                                        <div class="col-md-1" style="margin-top: 8px; ">
+                                            <i class="fa fa-globe fa-2x" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p style="margin-top: 9px; margin-bottom: 0px;">Anyone on your team can view this project</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #eff2f3;" title="You can enable slack notification after creating the project">
+                                        <div class="col-md-1" style="margin-top: 8px; ">
+                                            <i class="fa fa-hashtag fa-2x" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p style="margin-top: 9px; margin-bottom: 0px;">Enable Slack Notifications</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #e6e6eb;">
+                                        <div class="col-md-12">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">Collaborator Permissions</p>
+                                        </div>                                       
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 0px;">Can Download Files</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #e6e6eb;">                                        
+                                        <div class="col-md-12">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">My Email Notifications</p>
+                                        </div>                                        
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 0px;">New Comment</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">New Media Uploads</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">New Person Joins</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">Media Status Updated</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #e6e6eb;">                                        
+                                        <div class="col-md-12">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">Everyone Else’s Email Notifications</p>
+                                        </div>                                       
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">New Comment</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                       
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">New Media Uploads</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">New Person Joins</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                       
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 9px; margin-bottom: 9px;">Media Status Updated</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-md-6">
+                                        <button type="button" style="width: 100%;" class="btn btn-danger btn-large btn-rounded md-margin-15px-bottom sm-display-table sm-margin-lr-auto" data-dismiss="modal">Close</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" style="width: 100%;" class="btn btn-success btn-large btn-rounded md-margin-15px-bottom sm-display-table sm-margin-lr-auto">Save changes</button>                                        
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="project_list" style="margin:0px;">
+                <div class="col-md-12" style="margin-top: 10px; margin-bottom:10px; background-color:#20222B;color:#fff;">
+                    <a style="color:#fff; margin-left:10px; width:100%; font-weight:bold">Project 1</a>
+                </div>
+                <div class="col-md-12">
+                    <a style=" color:#fff; margin-left:10px; ">Project 2</a>
+                </div>                
+            </div>   
+        </nav>
+        <!-- end navigation -->
+        <div class="sidebar-wrapper mobile-height">                                    
+            <!-- start portfolio section -->
+            <section class="wow fadeIn" style="visibility: visible; animation-name: fadeIn; padding-top:20px; padding-bottom:0px;">
+                <div class="container">
+                    <div class="row" style="margin-left: 0px; padding-left: 0px;">
+                        <div class="col-md-4 " style="margin-left: 0px; padding-left: 0px;">
+                            <input type="search" placeholder="Jump to project or file…" class="bYDJpI" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 text-center" style=" width: 2%;">
+                            <span class="first-letter first-letter-block first-letter-block-round border-color-extra-light-gray">P</span>
+                            <!-- <p id="project_name" style="color: #000; background-color: #fff; border-radius:10px; padding: 6px 12px" class="alt-font font-weight-700 text-uppercase">P</p>                             -->
+                        </div>  
+                        <div class="col-md-7 text-center">
+                            <p id="project_name" class="alt-font font-weight-700 text-capitalize text-left" style="padding: 6px 12px">Project Name</p>                                                                              
+                        </div>  
+                        <div class="col-md-4 text-right"  style="margin-right: 0px; padding-right: 0px; width:37.333333%">
+                            <a href="#" onclick="showhide_share_options()" class="btn-primary btn border-radius-4">Share</a>                            
+                            <a href="#" onclick="showhide_new_options()" class="btn-success btn border-radius-4">New<i class="fa fa-angle-down" aria-hidden="true"></i></a>                            
+                        </div>
+                        <div class="col-md-2 text-left" id="share_options" style="background-color: #fff; border-radius: 15px; display:none; color: #000; position: absolute; right: 15%; top:15%; z-index: 500;">                            
+                            <a>&nbsp;</a><br/>
+                            <div class="col-md-2" style="margin: 0px; padding:0px;">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-10" style="margin: 0px; padding:0px;">
+                                <a style="margin-top: 15px; font-family:14px;"> Share as Review Link <br/> 
+                                    <span style="font-size:12px;">Viewers can leave comments</span> </a><br/>
+                            </div>
+                            <div class="col-md-2" style="margin-top: 10px; padding:0px;">
+                                <i class="fa fa-window-maximize" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-10" style="margin-top: 10px; padding:0px;">
+                                <a style="margin-top: 15px; font-family:14px;"> Share as Presentation <br/> 
+                                    <span style="font-size:12px;">View-only links with custom branding</span> </a><br/>                                    
+                            </div>         
+                                            
+                            <div class="col-md-12 text-center" style="margin-top: 10px; margin-bottom: 10px; padding:0px;">                 
+                                <hr style="margin-top:5px; margin-bottom:5px;"/>                 
+                                <a style="margin-top: 15px; font-family:14px;"> Learn more about sharing</a><br/>
+                            </div>         
+                            
+                        </div>
+                        <div class="col-md-1 text-left" id="new_options" style="background-color: #fff; border-radius: 15px; display:none; width: 12%; color: #000; position: absolute; right: 5%; top:15%; z-index: 500;">                            
+                            <a>&nbsp;</a><br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-download" aria-hidden="true"></i> &nbsp; File upload</a><br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-trash" aria-hidden="true"></i> &nbsp; Folder upload</a>
+                            <hr style="margin-top:5px; margin-bottom:5px;"/>                            
+                            <a style="margin-top: 15px;"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp; New folder</a> <br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-arrow-right" aria-hidden="true"></i> &nbsp; New private folder</a><br/>                            
+                            <a>&nbsp;</a>
+                        </div>
+                    </div>                    
+                </div>
+            </section>
+            <section class="wow fadeIn" style="visibility: visible; animation-name: fadeIn; padding:0px;">
+                <div class="container tab-style1">                   
+                    <div class="row">
+                        <div class="col-md-9">
+                            <!-- start tab navigation -->
+                            <ul class="nav nav-tabs alt-font text-uppercase text-small display-inherit font-weight-600">
+                                <li class="active"><a style="padding-left:0px;" href="#tab_sec1" data-toggle="tab" aria-expanded="true">Media</a></li>
+                                <li class=""><a href="#tab_sec2" data-toggle="tab" aria-expanded="false">Review Link</a></li>
+                                <li class=""><a href="#tab_sec3" data-toggle="tab" aria-expanded="false">Presentation</a></li>                                
+                            </ul>
+                            <!-- end tab navigation -->
+                        </div>
+                        <div class="col-md-1 text-right" style="padding: 0px; margin:0px;">
+                            <p>6 items, 0B </p>
+                        </div>
+                        <div class="col-md-1 text-right" style="padding: 0px; margin:0px;">
+                            <p>Custom <i id="custom_list_show" onclick="showhide_custom()" class="fa fa-angle-down"></i></p>                            
+                        </div>
+                        <div class="col-md-2 text-left" id="custom_list" style="background-color: #fff; border-radius: 15px; display:none; width: 12%; color: #000; position: absolute; right: 10%; top:20%; z-index: 500;">
+                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 11px;">Order</p>
+                            <a style="margin-top: 15px;">A to Z</a> <i style="margin-left: 60%;" class="fa fa-check" aria-hidden="true"></i><br/>
+                            <a style="margin-top: 15px;">Z to A</a>
+                            <hr style="margin-top:5px; margin-bottom:5px;"/>
+                            <p style="margin: 0px; font-size: 11px;">Sort by</p>
+                            <a style="margin-top: 15px;">Custom</a> <i style="margin-left: 55%;" class="fa fa-check" aria-hidden="true"></i><br/>
+                            <a style="margin-top: 15px;">Date Uploaded</a><br/>
+                            <a style="margin-top: 15px;">Name</a><br/>
+                            <a style="margin-top: 15px;">Type</a><br/>
+                            <a style="margin-top: 15px;">Size</a><br/>
+                            <a style="margin-top: 15px;">Status</a><br/>
+                            <a style="margin-top: 15px;">Comments</a><br/>
+                            <a>&nbsp;</a>
+                        </div>
+                        <div class="col-md-1 text-right" style="padding: 0px; margin:0px; width:6.5%;">
+                            <p><i id="grid_toggle" class="fa fa-list-ul" aria-hidden="true"></i> &nbsp;  <i onclick="showhide_project_options()" class="fa fa-ellipsis-h" aria-hidden="true"></i></p>
+                        </div>
+                        <div class="col-md-1 text-left" id="project_options" style="background-color: #fff; border-radius: 15px; display:none; width: 12%; color: #000; position: absolute; right: 5%; top:20%; z-index: 500;">                            
+                            <a>&nbsp;</a><br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-download" aria-hidden="true"></i> &nbsp; Download all</a><br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-trash" aria-hidden="true"></i> &nbsp; Recently deleted</a>
+                            <hr style="margin-top:5px; margin-bottom:5px;"/>                            
+                            <a style="margin-top: 15px;"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Project settings</a> <br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-arrow-right" aria-hidden="true"></i> &nbsp; Leave project</a><br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-archive" aria-hidden="true"></i>  &nbsp; Archive project</a><br/>
+                            <a style="margin-top: 15px;"><i class="fa fa-trash" aria-hidden="true"></i> &nbsp; Delete project</a><br/>                            
+                            <a>&nbsp;</a>
+                        </div>
+                        
+                    </div>                                
+                    <div class="tab-content">
+                        <!-- start tab content -->
+                        <div class="tab-pane med-text fade in active" id="tab_sec1" style=" margin-top:10px;">                            
+                            <table id="grid_view">
+                                <tr>
+                                    <td style="width: 30%; margin: 0px; padding:0px;">
+                                        <div class="ffolder big gray" style=" width: 84%;"> 
+                                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" style="width:100%; height: 70%; border-radius:14px; margin-top:3px;">
+                                            <p style="text-align:left; margin-left:10px; margin-bottom:0px; ">Untitled Folder</p>
+                                            <p style="color:#6F738C; text-align:left; margin-left:10px;">No Items</p>
+                                        </div>
+                                        <!-- <div style=" width: 84%;">
+                                            
+                                        </div> -->
+                                    </td>
+                                    <td style="width: 30%; margin-left: 20px; text-align: center; ">
+                                        <div style=" background-color: #303247; width: 80%; border-radius: 15px ">
+                                            <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" target="_blank" class="video-preview" style="width:100%;" data-frames="100" data-source="images/video_test.jpg"></a>
+                                            <p style="text-align:left; margin-top:10px; margin-left:10px; margin-bottom:0px; ">60 Second cut</p>
+                                            <p style="color:#6F738C; text-align:left; margin-left:10px;">Darshan 18st May, 2021</p>
+                                        </div>
+                                    </td>
+                                    <td style="width: 30%; margin-left: 20px; text-align: center; ">
+                                        <div style=" background-color: #303247; width: 80%; border-radius: 15px ">
+                                            <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" target="_blank" class="video-preview" style="width:100%;" data-frames="100" data-source="images/video_test.jpg"></a>
+                                            <p style="text-align:left; margin-top:10px; margin-left:10px; margin-bottom:0px; ">60 Second cut</p>
+                                            <p style="color:#6F738C; text-align:left; margin-left:10px;">Darshan 19th May, 2021</p>
+                                        </div>
+                                    </td>
+                                    <td style="width: 30%; text-align: center; ">
+                                        <div style=" background-color: #303247; width: 100%; border-radius: 15px ">
+                                            <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" target="_blank" class="video-preview" style="width:100%;" data-frames="100" data-source="images/video_test.jpg"></a>
+                                            <p style="text-align:left; margin-top:10px; margin-left:10px; margin-bottom:0px; ">60 Second cut</p>
+                                            <p style="color:#6F738C; text-align:left; margin-left:10px;">Darshan  May, 2021</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="">
+                                    <td style="width: 30%; margin: 0px; padding:0px;">
+                                        <div class="ffolder big gray" style=" width: 84%; margin-top: 20%;"> 
+                                            <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" style="width:100%; height: 70%; border-radius:14px; margin-top:3px;">
+                                            <p style="text-align:left; margin-left:10px; margin-bottom:0px; ">Pre-Production</p>
+                                            <p style="color:#6F738C; text-align:left; margin-left:10px;">Emily 20th May, 2021</p>
+                                        </div>                                       
+                                    </td>                                    
+                                </tr>
+                            </table>
+                           
+                            <div class="equalize" id="list_view">
+                                <div class="row" style="border-bottom: #32516F 1px solid;">
+                                    <div class="col-md-5">
+                                        <p>Name</p>
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        <p>Status</p>
+                                    </div>
+                                    <div class="col-md-1 text-center">
+                                        <p>Comments</p>
+                                    </div>
+                                    <div class="col-md-1 text-right">
+                                        <p>Size</p>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <p>Date Uploaded</p>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <p>Uploader</p>
+                                    </div>
+                                </div>                                
+                                <div class="row" style="border-bottom: #32516F 1px solid; margin-top: 10px;">
+                                    <a href="">
+                                        <div class="col-md-2">
+                                            <div class="ffolder tiny gray" >
+                                                <img src="images/pink_tree.jpg" style="width: 100%; height: 45px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p style="margin-top:12px; text-align: left;"> 60 Second Cut</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;">-</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;"><i class="fa fa-comment" aria-hidden="true"></i> 4</p>
+                                        </div>
+                                        <div class="col-md-1 text-right">
+                                            <p style="margin-top:12px;">324.5MB</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Feb 1st, 2019</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Darshan <i id="one" style="margin-left: 15px;" class="fa fa-ellipsis-v" aria-hidden="true"></i></p>                                            
+                                        </div>
+                                    </a>
+                                </div> 
+                                <div class="row" style="border-bottom: #32516F 1px solid; margin-top: 10px;">
+                                    <a href="">
+                                        <div class="col-md-2">
+                                            <div class="ffolder tiny gray" >
+                                                <img src="images/pink_tree.jpg" style="width: 100%; height: 45px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p style="margin-top:12px; text-align: left;"> 60 Second Cut</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;">-</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;"><i class="fa fa-comment" aria-hidden="true"></i> 4</p>
+                                        </div>
+                                        <div class="col-md-1 text-right">
+                                            <p style="margin-top:12px;">324.5MB</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Feb 1st, 2019</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Darshan <i id="two" style="margin-left: 15px;" class="fa fa-ellipsis-v" aria-hidden="true"></i></p>                                            
+                                        </div>
+                                    </a>
+                                </div> 
+                                <div class="row" style="border-bottom: #32516F 1px solid; margin-top: 10px;">
+                                    <a href="">
+                                        <div class="col-md-2">
+                                            <div class="ffolder tiny gray" >
+                                                <img src="images/pink_tree.jpg" style="width: 100%; height: 45px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p style="margin-top:12px; text-align: left;"> 60 Second Cut</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;">-</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;"><i class="fa fa-comment" aria-hidden="true"></i> 4</p>
+                                        </div>
+                                        <div class="col-md-1 text-right">
+                                            <p style="margin-top:12px;">324.5MB</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Feb 1st, 2019</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Darshan <i id="three" style="margin-left: 15px;" class="fa fa-ellipsis-v" aria-hidden="true"></i></p>                                            
+                                        </div>
+                                    </a>
+                                </div> 
+                                <div class="row" style="border-bottom: #32516F 1px solid; margin-top: 10px;">
+                                    <a href="">
+                                        <div class="col-md-2">
+                                            <div class="ffolder tiny gray">                                                
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <p style="margin-top:12px; text-align: left;"> 60 Second Cut</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;">-</p>
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <p style="margin-top:12px;"><i class="fa fa-comment" aria-hidden="true"></i> 4</p>
+                                        </div>
+                                        <div class="col-md-1 text-right">
+                                            <p style="margin-top:12px;">324.5MB</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Feb 1st, 2019</p>
+                                        </div>
+                                        <div class="col-md-2 text-center">
+                                            <p style="margin-top:12px;">Darshan <i id="four" style="margin-left: 15px;" class="fa fa-ellipsis-v" aria-hidden="true"></i></p>                                            
+                                        </div>
+                                    </a>
+                                </div> 
+                            </div>
+                        </div>
+                        <!-- end tab content -->
+                        <!-- start tab content -->
+                        <div class="tab-pane fade" id="tab_sec2">
+                            <div class="row equalize">
+                                <div class="col-md-12  display-table xs-margin-30px-bottom" style="height: 0px;">
+                                    <div class="display-table-cell vertical-align-middle text-center">   
+                                        <span class="text-extra-large dark-gray margin-20px-bottom display-block" style="margin-top: 110px;">
+                                            <i class="fa fa-link fa-5x" aria-hidden="true"></i><br/><br/>
+                                            No links</span>
+                                            <p style="color: #32516F">You haven’t created any share links for this project<br/>
+                                                Learn more about sharing</p>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <!-- end tab content -->
+                        <!-- start tab content -->
+                        <div class="tab-pane fade" id="tab_sec3">
+                            <div class="row equalize">
+                                <div class="col-md-12  display-table xs-margin-30px-bottom" style="height: 0px;">
+                                    <div class="display-table-cell vertical-align-middle text-center">   
+                                        <span class="text-extra-large dark-gray margin-20px-bottom display-block" style="margin-top: 110px;">
+                                            <i class="fa fa-link fa-5x" aria-hidden="true"></i><br/><br/>
+                                            No links</span>
+                                            <p style="color: #32516F">You haven’t created any share links for this project<br/>
+                                                Learn more about sharing</p>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <!-- end tab content -->                        
+                    </div>       
+                </div>
+            </section>
+        </div>
+       
+        <!-- start scroll to top -->
+        <a class="scroll-top-arrow" href="javascript:void(0);"><i class="ti-arrow-up"></i></a>
+        <!-- end scroll to top  -->
+        <!-- javascript libraries -->
+        
+        <!-- <script type="text/javascript" src="/js/jquery.js"></script> -->
+        <!-- <script type="text/javascript" src="/js/modernizr.js"></script> -->
+        <script src="/gui/js/jquery.js"></script>
+        <script type="text/javascript" src="/gui/js/bootstrap.min.js"></script>
+        <!-- <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js"></script> -->
+
+        <script>
+           
+            function showhide_account() 
+            {                  
+                var div = document.getElementById("account_info");  
+                if (div.style.display !== "none") {  
+                    div.style.display = "none";  
+                }  
+                else {  
+                    div.style.display = "block";  
+                }  
+            } 
+
+            function showhide_custom() 
+            {                  
+                var div = document.getElementById("custom_list");  
+                if (div.style.display !== "none") {  
+                    div.style.display = "none";  
+                }  
+                else {  
+                    div.style.display = "block";  
+                }  
+            }
+
+            function showhide_project_options() 
+            {                  
+                var div = document.getElementById("project_options");  
+                if (div.style.display !== "none") {  
+                    div.style.display = "none";  
+                }  
+                else {  
+                    div.style.display = "block";  
+                }  
+            } 
+
+            function showhide_share_options() 
+            {                  
+                var div = document.getElementById("share_options");  
+                if (div.style.display !== "none") {  
+                    div.style.display = "none";  
+                }  
+                else {  
+                    div.style.display = "block";  
+                }  
+            } 
+
+            function showhide_new_options() 
+            {                  
+                var div = document.getElementById("new_options");  
+                if (div.style.display !== "none") {  
+                    div.style.display = "none";  
+                }  
+                else {  
+                    div.style.display = "block";  
+                }  
+            } 
+
+            function showhide() 
+            {  
+                $("#project_list").toggle('slow');
+                var div = document.getElementById("project_list");  
+                // if (div.style.display !== "none") {  
+                //     div.style.display = "none";  
+                // }  
+                // else {  
+                //     div.style.display = "block";  
+                // }  
+            }
+
+            
+        </script>
+        <script>
+            
+            
+            $(document).mouseup(function(e) 
+            {
+                var container = $("#account_info");
+                var container1 = $("#custom_list");
+                var container2 = $("#project_options");
+                var container3 = $("#share_options");
+                var container4 = $("#new_options");
+
+
+                // if the target of the click isn't the container nor a descendant of the container
+                if (!container.is(e.target) && container.has(e.target).length === 0) 
+                {
+                    container.hide();
+                }
+
+                if (!container1.is(e.target) && container1.has(e.target).length === 0) 
+                {
+                    container1.hide();
+                }
+
+                if (!container2.is(e.target) && container2.has(e.target).length === 0) 
+                {
+                    container2.hide();
+                }
+
+                if (!container3.is(e.target) && container3.has(e.target).length === 0) 
+                {
+                    container3.hide();
+                }
+
+                if (!container4.is(e.target) && container4.has(e.target).length === 0) 
+                {
+                    container4.hide();
+                }
+
+                $('body').on("click touchstart", "#grid_toggle", function(e){
+                    $("#grid_view, #list_view").toggle();
+                });              
+
+                
+            });     
+                   
+            
+        </script>
+        <script>
+            //  $(function(){
+            //     $.contextMenu({
+            //         selector: '.context-menu-one', 
+            //         trigger: 'left',
+            //         callback: function(key, options) {
+            //             var m = "clicked: " + key;
+            //             window.console && console.log(m) || alert(m); 
+            //         },
+            //         items: {
+            //             "edit": {name: "Edit", icon: "edit"},
+            //             "cut": {name: "Cut", icon: "cut"},
+            //             "copy": {name: "Copy", icon: "copy"},
+            //             "paste": {name: "Paste", icon: "paste"},
+            //             "delete": {name: "Delete", icon: "delete"},
+            //             "sep1": "---------",
+            //             "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+            //         }
+            //     });
+            // });
+            
+            (function($) {                
+                $.fn.videoPreview = function(options) {
+                    return this.each(function() {
+                        var elm = $(this);
+                        var frames = parseFloat(elm.data('frames'));
+
+                        var img = $('<img/>', {
+                            'src': elm.data('source')
+                        }).hide().css({
+                        'position': 'absolute',
+                        'cursor': 'pointer'
+                    }).appendTo(elm);
+                    var slider = $('<div/>').hide().css({
+                        'width': '2px',
+                        'height': '100%',
+                        'background': '#ddd',
+                        'position': 'absolute',
+                        'z-index': '1',
+                        'top': '0',
+                        'opacity': 0.6,
+                        'cursor': 'pointer'
+                    }).appendTo(elm);
+    
+                    var width;
+    
+                    function defaultPos() {
+                        img.css('left', -width * frames / 4);
+                    }
+    
+                    img.load(function() {
+                        $(this).show();
+                        width = this.width / frames;
+                        elm.css('width', width);
+                        defaultPos();
+                    });
+                    elm.mousemove(function(e) {
+                        var left = e.clientX - elm.position().left;
+                        slider.show().css('left', left - 1); // -1 because it's 2px width
+                        img.css('left', -Math.floor((left / width) * frames) * width);
+                    }).mouseleave(function(e) {
+                        slider.hide();
+                    });
+    
+                    });
+                };
+                })(jQuery);
+    
+                $('.video-preview').videoPreview();
+        </script>
+    </body>
+</html>

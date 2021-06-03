@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Redchillies Video Review App</title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="#">
+    <meta name="keywords" content="Redchillies Video Review App">
+    <meta name="author" content="Darshan Panchal">
+    <!-- Favicon icon -->
+    <link rel="icon" href="..\files\assets\images\favicon.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <!-- Required Fremwork -->
+    
+    <link rel="stylesheet" type="text/css" href="..\files\bower_components\bootstrap\css\bootstrap.min.css">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\icon\feather\css\feather.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\style.css">
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="..\files\assets\css\ffolders.css">
+    <style>      
+        .section {
+            clear: both;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        /*  COLUMN SETUP  */
+        .col {
+            display: block;
+            float:left;
+            margin: 1% 0 1% 1.6%;
+        }
+        .col:first-child { margin-left: 0; }
+
+        /*  GROUPING  */
+        .group:before,
+        .group:after { content:""; display:table; }
+        .group:after { clear:both;}
+        .group { zoom:1; /* For IE 6/7 */ }
+        /*  GRID OF FIVE  */
+        .span_5_of_5 {
+            width: 100%;
+        }
+        .span_4_of_5 {
+            width: 79.68%;
+        }
+        .span_3_of_5 {
+            width: 59.36%;
+        }
+        .span_2_of_5 {
+            width: 39.04%;
+        }
+        .span_1_of_5 {
+            width: 18.72%;
+        }
+
+        /*  GO FULL WIDTH BELOW 480 PIXELS */
+        @media only screen and (max-width: 480px) {
+            .col {  margin: 1% 0 1% 0%; }
+            .span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
+        }
+
+        /* .box_menu {
+            display: none;
+            visibility: hidden;
+        } */
+        /* .ffolder:hover .box_menu{
+            display:inline;            
+        }
+        .ffolder:hover .box_comment{
+            display:none;            
+        } */
+
+
+
+
+        .video-preview {
+            display: inline-block;
+            position: relative;            
+            overflow: hidden;            
+            width: 160px;                
+            height: 120px;
+            border-radius: 3px;            
+        }
+        #avp {
+            display: inline-block;
+            position: relative;            
+            overflow: hidden;            
+            width: 160px;                
+            height: 120px;
+            border-radius: 3px;
+            /* box-shadow: 0 0 6px #bbb; */
+        }
+        #list_view {
+           display: none;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-top: 5px; 
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        .jump{
+            overflow: hidden;
+            background-color: rgb(32, 34, 43);
+            border-radius: 6px;
+            font-size: 13px;
+            border: none;
+            color: rgb(241, 243, 246);
+            width: 100%;
+            height: 32px;
+            padding: 8px;
+            transition: background-color 200ms linear 0s;
+        }
+        .Custom_pcoded{
+            margin-left:240px;
+        }
+        @media only screen and (max-width: 600px) {
+            #jumpto {
+                padding-top: 80px;
+                text-align: center;                
+            }
+            #jumpto_right
+            {
+                text-align: center !important;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            #shareBtn{
+                text-align: center !important;
+            }
+            .md-tabs .nav-item{
+                width: 100%;
+            }
+            .ffolder.big{
+                width: 21vh;
+                height: 19vh;
+            }
+            .Custom_pcoded{
+                margin-left:0px;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {   
+            #jumpto {
+                padding-top: 80px;
+                text-align: center;                
+            }        
+            .ffolder.big{
+                width: 21vh;
+                height: 19vh;
+            }
+        }
+        
+        @media only screen and (max-width: 1024px) {   
+            #jumpto {
+                padding-top: 80px;
+                text-align: center;                
+            }        
+            .ffolder.big{
+                width: 21vh;
+                height: 19vh;
+            }
+        }
+        
+    </style>
+</head>
+
+<body style="background-color: #15151C;">
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->    
+    <div id="pcoded" class="pcoded">        
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper" style="background-color: #0F0F14">
+
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+
+                    <div class="navbar-logo">
+                        <a class="mobile-menu text-right" id="mobile-collapse" href="#!">
+                            <i class="feather icon-menu"></i>
+                        </a>                                              
+                        <div class="dropdown-primary dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">                                
+                                <a href="javascript:void(0)">                                    
+                                    <span style="text-transform: capitalize; font-size: 20px;" class="pcoded-mtext">Darshan's Account</span>
+                                    <span class="pcoded-micon text-right"><i class="feather icon-chevron-down"></i></span>
+                                </a>
+                            </div>
+                            <ul class="show-notification profile-notification dropdown-menu" style="left: 18px; min-width: 15rem; border-radius: 10px; padding: 10px;" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                <li>
+                                    <p style="margin: 0px;"> Darshan Panchal </p>
+                                    <p style="margin: 0px; font-size:8px;">DarshanPanchal814@gmail.com </p>
+                                </li>
+                                <li>
+                                    <button class="btn btn-info" style="width: 100%; border-radius:10px; padding: 0px;">Subscribe now</button>
+                                    <hr/>
+                                </li>                                
+                                <li>
+                                    <a style="color: #000;">
+                                        <i class="feather icon-user"></i> Account settings<br/><span style="font-size:8px; margin-left: 20px;">Add / manage users & teams</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a style="color: #000;">
+                                        <i class="feather icon-user"></i> Personal settings<br/><span style="font-size:8px; margin-left: 20px;">Add / manage users & teams</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a style="color: #000;">
+                                        <i class="feather icon-user"></i> Apps & integrations<br/><span style="font-size:8px; margin-left: 20px;">Add / manage users & teams</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a style="color: #000;">
+                                        <i class="feather icon-user"></i> Account settings<br/><span style="font-size:8px; margin-left: 20px;">Add / manage users & teams</span>
+                                    </a>
+                                    <hr/>
+                                </li>
+                                <li>                                    
+                                    <a style="color: #000;">Product updates </a>
+                                </li> 
+                                <li>                                    
+                                    <a style="color: #000;">Status updates</a>
+                                </li> 
+                                <li>                                    
+                                    <a style="color: #000;">Support FAQ </a>
+                                </li> 
+                                <li>                                    
+                                    <a style="color: #000;">Logout </a>
+                                </li> 
+                            </ul>
+
+                        </div>
+                        <a class="mobile-options">
+                            <i class="feather icon-more-horizontal"></i>
+                        </a>
+                    </div>
+                    
+                </div>
+            </nav>
+
+            <!-- Sidebar chat start -->
+            <div id="sidebar" class="users p-chat-user showChat">
+                <div class="had-container">
+                    <div class="card card_main p-fixed users-main">
+                        <div class="user-box">
+                            <div class="chat-inner-header">
+                                <div class="back_chatBox">
+                                    <div class="right-icon-control">
+                                        <input type="text" class="form-control  search-text" placeholder="Search Friend" id="search-friends">
+                                        <div class="form-icon">
+                                            <i class="icofont icofont-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="main-friend-list">
+                                <div class="media userlist-box" data-id="1" data-status="online" data-username="Josephin Doe" data-toggle="tooltip" data-placement="left" title="Josephin Doe">
+                                    <a class="media-left" href="#!">
+                                        <img class="media-object img-radius img-radius" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image ">
+                                        <div class="live-status bg-success"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="f-13 chat-header">Josephin Doe</div>
+                                    </div>
+                                </div>
+                                <div class="media userlist-box" data-id="2" data-status="online" data-username="Lary Doe" data-toggle="tooltip" data-placement="left" title="Lary Doe">
+                                    <a class="media-left" href="#!">
+                                        <img class="media-object img-radius" src="..\files\assets\images\avatar-2.jpg" alt="Generic placeholder image">
+                                        <div class="live-status bg-success"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="f-13 chat-header">Lary Doe</div>
+                                    </div>
+                                </div>
+                                <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
+                                    <a class="media-left" href="#!">
+                                        <img class="media-object img-radius" src="..\files\assets\images\avatar-4.jpg" alt="Generic placeholder image">
+                                        <div class="live-status bg-success"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="f-13 chat-header">Alice</div>
+                                    </div>
+                                </div>
+                                <div class="media userlist-box" data-id="4" data-status="online" data-username="Alia" data-toggle="tooltip" data-placement="left" title="Alia">
+                                    <a class="media-left" href="#!">
+                                        <img class="media-object img-radius" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
+                                        <div class="live-status bg-success"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="f-13 chat-header">Alia</div>
+                                    </div>
+                                </div>
+                                <div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen" data-toggle="tooltip" data-placement="left" title="Suzen">
+                                    <a class="media-left" href="#!">
+                                        <img class="media-object img-radius" src="..\files\assets\images\avatar-2.jpg" alt="Generic placeholder image">
+                                        <div class="live-status bg-success"></div>
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="f-13 chat-header">Suzen</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar inner chat start-->
+            <div class="showChat_inner">
+                <div class="media chat-inner-header">
+                    <a class="back_chatBox">
+                        <i class="feather icon-chevron-left"></i> Josephin Doe
+                    </a>
+                </div>
+                <div class="media chat-messages">
+                    <a class="media-left photo-table" href="#!">
+                        <img class="media-object img-radius img-radius m-t-5" src="..\files\assets\images\avatar-3.jpg" alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body chat-menu-content">
+                        <div class="">
+                            <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+                            <p class="chat-time">8:20 a.m.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="media chat-messages">
+                    <div class="media-body chat-menu-reply">
+                        <div class="">
+                            <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+                            <p class="chat-time">8:20 a.m.</p>
+                        </div>
+                    </div>
+                    <div class="media-right photo-table">
+                        <a href="#!">
+                            <img class="media-object img-radius img-radius m-t-5" src="..\files\assets\images\avatar-4.jpg" alt="Generic placeholder image">
+                        </a>
+                    </div>
+                </div>
+                <div class="chat-reply-box p-b-20">
+                    <div class="right-icon-control">
+                        <input type="text" class="form-control search-text" placeholder="Share Your Thoughts">
+                        <div class="form-icon">
+                            <i class="feather icon-navigation"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar inner chat end-->
+            <div class="pcoded-main-container" style="background-color: #0F0F14;  margin-top: 10px!important; padding-top: 0px;">                
+                <div class="pcoded-wrapper" style=" margin-top: 0px; padding-top: 0px;">                    
+                    <nav class="pcoded-navbar" style="background-color: #0F0F14; margin-top: 0px; padding-top: 0px;" >                        
+                        <div class="pcoded-inner-navbar main-menu">                            
+                            <!-- <div class="pcoded-navigatio-lavel"><input type="text" class="form-control form-control-round" placeholder='Search'></div> -->
+                            <div class="pcoded-navigatio-lavel" menu-title-theme="theme5"><i class="feather icon-search"></i> Search</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="pcoded-hasmenu active pcoded-trigger" style="background-color: #0F0F14;">
+                                    <a href="javascript:void(0)" style="background-color: #0F0F14;">
+                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                        <span class="pcoded-mtext">Darshan's Team</span>
+                                        <span class="pcoded-badge label label-info"><i data-toggle="modal" data-target="#default-Modal" style="z-index: 1500;" class="feather icon-plus"></i></span>                                        
+                                    </a>
+                                    
+                                    <ul class="pcoded-submenu" style="background-color: #0F0F14;">
+                                        <li class="active">
+                                            <a href="javascript:void(0)">
+                                                <span class="pcoded-mtext">Project 1</span>
+                                            </a>
+                                        </li>                                        
+                                        <li class="pcoded-hasmenu">
+                                            <a href="javascript:void(0)">
+                                                <span class="pcoded-mtext">Archived Project</span>
+                                            </a>
+                                            <ul class="pcoded-submenu" style="background-color: #0F0F14;">
+                                                <li class="">
+                                                    <a href="javascript:void(0)">
+                                                        <span class="pcoded-mtext">Project 2</span>
+                                                    </a>                                                    
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>                                        
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog" style="z-index: 1050; display: none;" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #5B53FF;">
+                                    <h4 class="modal-title" style="color: #fff;">Add Project</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="color: #000;">                                    
+                                    <input type="text" class="form-control" placeholder="Enter Project Name">
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">
+                                        <div class="col-md-1" style="margin-top: 8px; ">
+                                            <i class="feather icon-globe f-30" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">Anyone on your team can view this project</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #eff2f3;" title="You can enable slack notification after creating the project">
+                                        <div class="col-md-1" style="margin-top: 8px; ">
+                                            <i class="feather icon-hash f-30" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">Enable Slack Notifications</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #e6e6eb;">
+                                        <div class="col-md-12">
+                                            <p style="margin-top: 9px; margin-bottom: 9px; font-size: 15px;">Collaborator Permissions</p>
+                                        </div>                                       
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">Can Download Files</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #e6e6eb;">                                        
+                                        <div class="col-md-12">
+                                            <p style="margin-top: 9px; margin-bottom: 9px; font-size: 15px;">My Email Notifications</p>
+                                        </div>                                        
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;;">New Comment</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">New Media Uploads</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">New Person Joins</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">Media Status Updated</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row" style="background-color: #e6e6eb;">                                        
+                                        <div class="col-md-12">
+                                            <p style="margin-top: 9px; margin-bottom: 9px; font-size: 15px;">Everyone Else’s Email Notifications</p>
+                                        </div>                                       
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">New Comment</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                       
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">New Media Uploads</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                        
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">New Person Joins</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr style="margin:0px;"/>                                    
+                                    <div class="row">                                       
+                                        <div class="col-md-10">
+                                            <p style="margin-top: 13px; margin-bottom: 0px; font-size: 15px;">Media Status Updated</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" checked>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="col-md-6">
+                                        <button type="button" style="width: 100%;" class="btn btn-danger btn-large btn-rounded md-margin-15px-bottom sm-display-table sm-margin-lr-auto" data-dismiss="modal">Close</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" style="width: 100%;" class="btn btn-success btn-large btn-rounded md-margin-15px-bottom sm-display-table sm-margin-lr-auto">Save changes</button>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                                                 
+                    <div class="Custom_pcoded" style="background-color: #0F0F14; margin-top: 0px; padding-top: 0px;">                                 
+                        <div class="pcoded-inner-content">   
+                            <div class="main-body">                                                                
+                                <div class="page-wrapper" style="padding-top: 0rem;">                                                                                                            
+                                    <div class="page-body">                                                                                   
+                                        <div class="row" id="jumpto">                                                                                        
+                                            <div class="row text-center">
+                                                <p>pcoded content</p>
+                                                <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" id="vp" target="_blank" class="video-preview" data-frames="100" data-source="../files/assets/images/site/video_test.jpg"></a>
+                                            </div>   
+                                            <div class="col-md-4 project-name align-middle">                                                
+                                                <input class="jump" st type="text" placeholder="Jump to project or file..."/>
+                                                <!-- <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" id="vp" target="_blank" class="video-preview" data-frames="100" data-source="../files/assets/images/site/video_test.jpg"></a> -->
+                                            </div>
+                                            <div class="col-md-8 text-right" id="jumpto_right">                                                
+                                                <div class="dropdown-primary dropdown open">                                                    
+                                                    <button style="background-color:#2A2E3B; color: #fff;" class="btn  btn-icon"  id="dropdown-p" data-toggle="dropdown" data-placement="top" title="">&nbsp;<i class="feather icon-user" aria-hidden="true"></i></button>            
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-p" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Join Requests</a>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-inverse dropdown open">
+                                                    <button style="background-color:#2A2E3B; color: #fff;" class="btn  btn-icon"  id="dropdown-p" data-toggle="dropdown" data-placement="top" title="">&nbsp;<i class="feather icon-cloud-lightning" aria-hidden="true"></i></button>            
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-p" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Notifications </a>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-inverse dropdown open">
+                                                    <button style="background-color:#2A2E3B; color: #fff;" class="btn  btn-icon"  id="dropdown-p" data-toggle="dropdown" data-placement="top" title="">&nbsp;<i class="feather icon-help-circle" aria-hidden="true"></i></button>            
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-p" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Help</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        <div class="row pt-2">
+                                            <div class="col-md-8 project-name align-middle">
+                                                <h5 style="color: #fff; margin-bottom: 10px;"><button style="background-color:#2A2E3B;" class="btn btn-primary btn-icon" data-toggle="tooltip" data-placement="top" title="">P
+                                                </button> Demo Project</h5>                                                
+                                            </div>
+                                            <div class="col-md-4 text-right" id="shareBtn">
+                                                <div class="dropdown-primary dropdown open">
+                                                    <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button" id="dropdown-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:8px;">Share</button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-2" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-mail" aria-hidden="true"></i> &nbsp; Share as Review Link <br/> <span style="font-size:9px; margin-left: 30px;">Viewers can leave comments</span></a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-tv" aria-hidden="true"></i> &nbsp; Share as Presentation <br/> <span style="font-size:9px; margin-left: 30px;">View-only links with custom branding</span> </a>                                                        
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item waves-light waves-effect"><i class="fa fa-cog" aria-hidden="true"></i> &nbsp; Learn more about sharing</a>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-inverse dropdown open">
+                                                    <button class="btn btn-inverse dropdown-toggle waves-effect waves-light " type="button" id="dropdown-7" data-toggle="dropdown" aria-haspopup="true" style="padding:8px;" aria-expanded="false">New</button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-7" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 40px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-upload" aria-hidden="true"></i> &nbsp; File upload</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; Folder upload</a>                                                        
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item waves-light waves-effect"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; New folder</a>
+                                                        <a class="dropdown-item waves-light waves-effec"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; New private folder</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">                                                
+                                                <!-- Nav tabs -->
+                                                <ul class="nav nav-tabs md-tabs" role="tablist">
+                                                    <li class="nav-item custom_tabs">
+                                                        <a class="nav-link active" data-toggle="tab" href="#home3" role="tab" aria-expanded="true">Media</a>
+                                                        <div class="slide"></div>
+                                                    </li>
+                                                    <li class="nav-item custom_tabs">
+                                                        <a class="nav-link" data-toggle="tab" href="#profile3" role="tab" aria-expanded="false">Review Links</a>
+                                                        <div class="slide"></div>
+                                                    </li>
+                                                    <li class="nav-item custom_tabs">
+                                                        <a class="nav-link" data-toggle="tab" href="#messages3" role="tab" aria-expanded="false">Presentations</a>
+                                                        <div class="slide"></div>
+                                                    </li>                                                   
+                                                </ul>                                               
+                                            </div>
+                                            <div class="col-md-6 text-right" style="margin-top: 3vh;">                                                
+                                                <a style="color: #fff;">7 items, 50MB </a>                                                 
+                                                <a class="dropdown-toggle waves-effect waves-light" id="dropdown-11" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:8px; color: #A9B2BF;">Custom</a>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-11" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">A to Z</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Z to A</a>                                                        
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Sort by</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Custom</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Date Uploaded</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Name</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Type</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Size</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Status</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#">Comments</a>
+                                                    </div>
+
+                                                
+                                                <a class=" waves-effect waves-light" id="dropdown_grid" style="padding:8px; color: #A9B2BF;"><i class="feather icon-grid f-20" aria-hidden="true"></i></a>
+
+                                                
+                                                <a class="waves-effect waves-light" id="dropdown-21" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:8px; color: #A9B2BF;"><i class="feather icon-menu f-20" aria-hidden="true"></i></a>                                                
+                                                    <div class="dropdown-menu" aria-labelledby="dropdown-21" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-download" aria-hidden="true"></i> &nbsp; Download all</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-trash" aria-hidden="true"></i> &nbsp; Recently deleted </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-plus-circle" aria-hidden="true"></i> &nbsp; Project settings</a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-arrow-down-right" aria-hidden="true"></i> &nbsp; Leave project </a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; Archive project </a>
+                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-delete" aria-hidden="true"></i> &nbsp; Delete project </a>
+                                                    </div>                                               
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <!-- <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" id="vp" target="_blank" class="video-preview" data-frames="100" data-source="../files/assets/images/site/video_test.jpg"></a> -->
+                                            <!-- <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;"> -->
+                                            
+                                            <!-- <p style="color:#6F738C; text-align:left; margin-left:10px;">No Items</p>       -->
+                                            <!-- <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" id="vp" target="_blank" class="video-preview" data-frames="100" data-source="../files/assets/images/site/video_test.jpg"></a> -->
+                                            <div class="col-md-12">
+                                                 <!-- Tab panes -->
+                                                 <div class="tab-content card-block" style=" padding-right:0px;">
+                                                    <div class="tab-pane active pt-3" id="home3" role="tabpanel" aria-expanded="true">
+                                                        <!-- <div class="section group">
+                                                            <div class="col span_1_of_5">
+                                                                <div class="ffolder big gray">
+                                                                    <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                    <p style="text-align:left; margin-left:10px; margin-bottom:0px; color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                    <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items</p>                                                                  
+                                                                </div>
+                                                            </div>
+                                                            <div class="col span_1_of_5">
+                                                                <div class="ffolder big gray">
+                                                                    <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                    <p style="text-align:left; margin-left:10px; margin-bottom:0px; color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                    <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items</p>                                                                  
+                                                                </div>
+                                                            </div>
+                                                            <div class="col span_1_of_5">
+                                                                <div class="">
+                                                                    <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                    <p style="text-align:left; margin-left:10px; margin-bottom:0px; color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                    <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items                                                                        
+                                                                    </p>                                                                  
+                                                                    <a class="waves-effect waves-light" id="dropdown-21" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="padding:8px; float: right; color: #A9B2BF;"><i class="feather icon-menu f-20" aria-hidden="true"></i></a>                                                
+                                                                    <div class="dropdown-menu" aria-labelledby="dropdown-21" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-download" aria-hidden="true"></i> &nbsp; Download all</a>
+                                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-trash" aria-hidden="true"></i> &nbsp; Recently deleted </a>
+                                                                        <div class="dropdown-divider"></div>
+                                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-plus-circle" aria-hidden="true"></i> &nbsp; Project settings</a>
+                                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-arrow-down-right" aria-hidden="true"></i> &nbsp; Leave project </a>
+                                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; Archive project </a>
+                                                                        <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-delete" aria-hidden="true"></i> &nbsp; Delete project </a>
+                                                                    </div>       
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="col span_1_of_5">
+                                                            1 of 5
+                                                            </div>
+                                                            <div class="col span_1_of_5">
+                                                            1 of 5
+                                                            </div>
+                                                        </div> -->
+                                                       
+                                                        <div class="row" id="grid_view">
+                                                                                                                        
+                                                                <a href="https://www.youtube.com/watch?v=v1uyQZNg2vE" id="vp" target="_blank" class="video-preview" data-frames="100" data-source="../files/assets/images/site/video_test.jpg"></a>
+                                                                <!-- <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;"> -->
+                                                                <p style="text-align:left; margin-left:10px; margin-bottom:0px;color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items</p>   
+                                                            
+                                                            <div class="ffolder big gray">
+                                                                <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                <p style="text-align:left; margin-left:10px; margin-bottom:0px; color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items</p>                                                                  
+                                                            </div>
+                                                            <div class="ffolder big gray">
+                                                                <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                <p style="text-align:left; margin-left:10px; margin-bottom:0px; color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items</p>                                                                  
+                                                            </div>
+                                                            <div class="ffolder big gray">
+                                                                <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                <p style="text-align:left;  margin-left:10px; margin-bottom:0px;color:#fff; font-size: 2vh; padding-top: 2px; ">Untitled Folder</p>
+                                                                <i id="box_comment" class="feather icon-message-circle f-20 box_comment" style="padding-right:5px; padding-bottom:5px; color: #fff; float: right;"></i>
+                                                                <i class="feather icon-menu f-20 box_menu" style="padding-right:5px; padding-bottom:5px; color: #fff; float: right; " id="box_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-hidden="true"></i>
+                                                                <div class="dropdown-menu" aria-labelledby="box_menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-share-2" aria-hidden="true"></i> &nbsp; Share</a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-edit" aria-hidden="true"></i> &nbsp; Rename </a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-circle" aria-hidden="true"></i> &nbsp; No status</a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; Move to.. </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-copy" aria-hidden="true"></i> &nbsp; Copy to.. </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-lock" aria-hidden="true"></i> &nbsp; Make Private </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-download" aria-hidden="true"></i> &nbsp; Download as.. </a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-share" aria-hidden="true"></i> &nbsp; Manage version stack </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-delete" aria-hidden="true"></i> &nbsp; Delete (2 versions) </a>
+                                                                </div>                                                                                                                              
+                                                                <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Items</p>                                                                  
+                                                            </div>
+                                                            <div class="ffolder big gray">
+                                                                <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:14px; margin-top:3px;">
+                                                                <p style="text-align:left; ; margin-left:10px; margin-bottom:0px; color:#fff; font-size: 2vh; padding-top: 2px;">Untitled Folder</p>
+                                                                <!-- <i id="box_comment" class="feather icon-message-circle f-20 box_comment" style="padding-right:5px; padding-bottom:5px; color: #fff; float: right;"></i> -->
+                                                                <i class="feather icon-menu f-20 box_menu" style="padding-right:5px; padding-bottom:5px; color: #fff; float: right;" id="box_menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-hidden="true"></i>
+                                                                <div class="dropdown-menu" aria-labelledby="box_menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-share-2" aria-hidden="true"></i> &nbsp; Share</a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-edit" aria-hidden="true"></i> &nbsp; Rename </a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-circle" aria-hidden="true"></i> &nbsp; No status</a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-folder" aria-hidden="true"></i> &nbsp; Move to.. </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-copy" aria-hidden="true"></i> &nbsp; Copy to.. </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-lock" aria-hidden="true"></i> &nbsp; Make Private </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-download" aria-hidden="true"></i> &nbsp; Download as.. </a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-share" aria-hidden="true"></i> &nbsp; Manage version stack </a>
+                                                                    <a class="dropdown-item waves-light waves-effect" href="#"><i class="feather icon-delete" aria-hidden="true"></i> &nbsp; Delete (2 versions) </a>
+                                                                </div>                                                                                                                              
+                                                                <p style="color:#6F738C; text-align:left; margin-left:10px; font-size: 1.8vh;">No Iatems   </p>                                                                   
+                                                            </div>                                                            
+                                                        </div>      
+                                                        <div class="row" id="list_view" style="color: #fff;">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-hover">
+                                                                    <thead>
+                                                                        <tr>                                                                            
+                                                                            <th style="width: 30vw;">Name</th>
+                                                                            <th>Status</th>                                                
+                                                                            <th>Comments</th>
+                                                                            <th>Size</th>
+                                                                            <th>Date Uploaded</th>
+                                                                            <th>Uploader</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row"> 
+                                                                                <div class="ffolder tiny gray">                                                                                    
+                                                                                </div> &nbsp;
+                                                                                <div class="d-inline-block">
+                                                                                    <h6>Untitled Folder</h6>
+                                                                                    <p class="text-muted m-b-0">No items</p>
+                                                                                </div>                                                                                
+                                                                            </th>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">0b</td>
+                                                                            <td class="align-middle">May 10th, 1pm</td>
+                                                                            <td class="align-middle">Darshan P</td>
+                                                                            <td class="align-middle"><i class="feather icon-menu"></i></td>
+                                                                        </tr>
+                                                                         <tr>
+                                                                            <th scope="row"> 
+                                                                                <div class="ffolder tiny gray">    
+                                                                                    <img src="../files/assets/images/site/image_small.png" style="width:100%; border-radius:0px 6px 6px 6px; margin-top:3px;">
+
+                                                                                </div> &nbsp;
+                                                                                <div class="d-inline-block align-middle">
+                                                                                    <h6>Untitled Folder</h6>
+                                                                                    <p class="text-muted m-b-0">No items</p>
+                                                                                </div>                                                                                
+                                                                            </th>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">0b</td>
+                                                                            <td class="align-middle">May 10th, 1pm</td>
+                                                                            <td class="align-middle">Darshan P</td>
+                                                                            <td class="align-middle"><i class="feather icon-menu"></i></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row"> 
+                                                                                <div class="ffolder tiny gray">                                                                                    
+                                                                                </div> &nbsp;
+                                                                                <div class="d-inline-block">
+                                                                                    <h6>Untitled Folder</h6>
+                                                                                    <p class="text-muted m-b-0">No items</p>
+                                                                                </div>                                                                                
+                                                                            </th>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">0b</td>
+                                                                            <td class="align-middle">May 10th, 1pm</td>
+                                                                            <td class="align-middle">Darshan P</td>
+                                                                            <td class="align-middle"><i class="feather icon-menu"></i></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row"> 
+                                                                                <div class="ffolder tiny gray">                                                                                    
+                                                                                </div> &nbsp;
+                                                                                <div class="d-inline-block">
+                                                                                    <h6>Untitled Folder</h6>
+                                                                                    <p class="text-muted m-b-0">No items</p>
+                                                                                </div>                                                                                
+                                                                            </th>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">0b</td>
+                                                                            <td class="align-middle">May 10th, 1pm</td>
+                                                                            <td class="align-middle">Darshan P</td>
+                                                                            <td class="align-middle"><i class="feather icon-menu"></i></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row"> 
+                                                                                <div class="ffolder tiny gray">                                                                                    
+                                                                                </div> &nbsp;
+                                                                                <div class="d-inline-block">
+                                                                                    <h6>Untitled Folder</h6>
+                                                                                    <p class="text-muted m-b-0">No items</p>
+                                                                                </div>                                                                                
+                                                                            </th>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">-</td>
+                                                                            <td class="align-middle">0b</td>
+                                                                            <td class="align-middle">May 10th, 1pm</td>
+                                                                            <td class="align-middle">Darshan P</td>
+                                                                            <td class="align-middle"><i class="feather icon-menu"></i></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>                                                                                                 
+                                                    </div>
+                                                    <div class="tab-pane" id="profile3" role="tabpanel" aria-expanded="false">
+                                                        <div class="row equalize">
+                                                            <div class="col-md-12  display-table xs-margin-30px-bottom" style="height: 0px;">
+                                                                <div class="display-table-cell vertical-align-middle text-center pt-5">   
+                                                                    <span class="text-extra-large lead text-white display-block">
+                                                                        <i class="feather icon-link f-50"></i><br/>
+                                                                        No links</span>
+                                                                        <p style="color: #5B5E72">You haven’t created any share links for this project<br/>
+                                                                            Learn more about sharing</p>
+                                                                </div>
+                                                            </div>                                
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane" id="messages3" role="tabpanel" aria-expanded="false">
+                                                        <div class="row equalize">
+                                                            <div class="col-md-12  display-table xs-margin-30px-bottom" style="height: 0px;">
+                                                                <div class="display-table-cell vertical-align-middle text-center pt-5">   
+                                                                    <span class="text-extra-large lead text-white display-block">
+                                                                        <i class="feather icon-link f-50"></i><br/>
+                                                                        No links</span>
+                                                                        <p style="color: #5B5E72">You haven’t created any share links for this project<br/>
+                                                                            Learn more about sharing</p>
+                                                                </div>
+                                                            </div>                                
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+
+                                <div id="styleSelector">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <!-- Required Jquery -->
+    <!-- <script data-cfasync="false" src="..\..\..\cdn-cgi\scripts\5c5dd728\cloudflare-static\email-decode.min.js"></script> -->
+    <script type="text/javascript" src="..\files\bower_components\jquery\js\jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+    <!-- <script type="text/javascript" src="..\files\bower_components\jquery-ui\js\jquery-ui.min.js"></script> -->
+    <script type="text/javascript" src="..\files\bower_components\popper.js\js\popper.min.js"></script>
+    <script type="text/javascript" src="..\files\bower_components\bootstrap\js\bootstrap.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="..\files\bower_components\jquery-slimscroll\js\jquery.slimscroll.js"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="..\files\bower_components\modernizr\js\modernizr.js"></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="..\files\bower_components\chart.js\js\Chart.js"></script>
+    <!-- amchart js -->
+    <script src="..\files\assets\pages\widget\amchart\amcharts.js"></script>
+    <script src="..\files\assets\pages\widget\amchart\serial.js"></script>
+    <script src="..\files\assets\pages\widget\amchart\light.js"></script>
+    <script src="..\files\assets\js\jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="..\files\assets\js\SmoothScroll.js"></script>
+    <script src="..\files\assets\js\pcoded.min.js"></script>
+    <!-- custom js -->
+    <script src="..\files\assets\js\vartical-layout.min.js"></script>
+    <!-- <script type="text/javascript" src="..\files\assets\pages\dashboard\custom-dashboard.js"></script> -->
+    <script type="text/javascript" src="..\files\assets\js\script.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#list_view').hide();
+            $(".box_menu").hide();
+
+            // $(".ffolder").hover(function(){
+            //     $(".box_menu").toggle();
+            //     $(".box_comment").toggle();
+
+            // });
+        });
+
+        $('#dropdown_grid').on("click", function(e){
+                    $("#grid_view, #list_view").toggle();
+        });
+    </script>
+    <script>
+        (function($) {                
+            $.fn.videoPreview = function(options) {
+                return this.each(function() {
+                    var elm = $(this);
+                    var frames = parseFloat(elm.data('frames'));
+
+                    var img = $('<img/>', {
+                        'src': elm.data('source')
+                    }).hide().css({
+                    'position': 'absolute',
+                    'cursor': 'pointer'
+                }).appendTo(elm);
+                var slider = $('<div/>').hide().css({
+                    'width': '2px',
+                    'height': '100%',
+                    'background': '#ddd',
+                    'position': 'absolute',
+                    'z-index': '1',
+                    'top': '0',
+                    'opacity': 0.6,
+                    'cursor': 'pointer'
+                }).appendTo(elm);
+
+                var width;
+
+                function defaultPos() {
+                    img.css('left', -width * frames / 4);
+                }
+
+                img.load(function() {
+                    $(this).show();
+                    width = this.width / frames;
+                    elm.css('width', width);
+                    defaultPos();
+                });
+                elm.mousemove(function(e) {
+                    var left = e.clientX - elm.position().left;
+                    slider.show().css('left', left - 1); // -1 because it's 2px width
+                    img.css('left', -Math.floor((left / width) * frames) * width);
+                }).mouseleave(function(e) {
+                    slider.hide();
+                });
+
+                });
+            };
+            })(jQuery);
+
+            $('.video-preview').videoPreview();
+            // $('#vp').videoPreview();
+    </script>
+</body>
+</html>
